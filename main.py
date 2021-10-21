@@ -1,7 +1,6 @@
-import pyodbc
 from kivy.app import App
 from kivy.uix.button import Button
-
+import pyodbc
 
 
 server = "192.168.1.89"
