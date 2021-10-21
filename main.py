@@ -1,21 +1,19 @@
 from kivy.app import App
+from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
-import pyodbc
 
 
-server = "192.168.1.89"
-bd = "Clientes"
-usuario = "usuario"
-contrasena = "Manager21"
-try:
-    conexion = pyodbc.connect("DRIVER={ODBC Driver 11 for SQL Server}; SERVER="+server+";DATABASE="+bd+";UID="+usuario+";PWD="+contrasena)
-    print("Conexion exitosa")
-except:
-    print("Conexion fallida")
+class SpecialButton(Button):
+    pass
 
-cursor = conexion.cursor()
+
+class CustomLayout(BoxLayout):
+    pass
+
 
 class TestApp(App):
-    def build(self):
-        return Button(text='Hello World')
-TestApp().run()
+    pass
+
+
+if __name__ == '__main__':
+    TestApp().run()
