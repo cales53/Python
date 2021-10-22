@@ -17,11 +17,8 @@ try:
     print("Conexion exitosa")
 except:
     print("Conexion fallida")
-
-
 cursor = conexion.cursor()
 cursor.execute("select * from persona;")
-
 personas = cursor.fetchall()
 for persona in personas:
     print(persona)    
