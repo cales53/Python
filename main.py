@@ -3,18 +3,32 @@ from tkinter import ttk
 import pyodbc
 
 mywindow = tk.Tk()
-mywindow.title("Python + Tkinter GUI")
+mywindow.title("Ingreso Cliente Nuevo")
 mywindow.geometry("600x400")
-mywindow.title("Botón en Tk")
 
-boton = ttk.Button(text="¡Hola, mundo!")
-boton.place(x=50, y=50)
+content = ttk.Frame(mywindow)
+frame = ttk.Frame(content, borderwidth=5, relief="ridge", width=200, height=100)
+namelbl = ttk.Label(content, text="Name")
+name = ttk.Entry(content)
 
+
+etiqueta_nombre = ttk.Label(text="Nombre del cliente")
+etiqueta_nombre.place(x=30, y=15)
+caja_nombre = ttk.Entry()
+caja_nombre.place(x=180, y=15, width=250)
+etiqueta_empresa = ttk.Label(text="Nombre de la empresa")
+etiqueta_empresa.place(x=30, y=40)
+caja_empresa = ttk.Entry()
+caja_empresa.place(x=180, y=40, width=250)
+
+boton = ttk.Button(text="Enviar")
+boton.place(x=30, y=350)
+boton = ttk.Button(text="Cancelar")
+boton.place(x=500, y=350)
 
 mywindow.mainloop()
 
-
-#conexion a base de datos
+#Conexion a base de datos
 
 server = "192.168.1.89"
 bd = "Clientes"
