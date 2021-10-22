@@ -1,10 +1,18 @@
 import tkinter as tk
+from tkinter import ttk
 import pyodbc
 
 mywindow = tk.Tk()
 mywindow.title("Python + Tkinter GUI")
 mywindow.geometry("600x400")
+mywindow.title("Botón en Tk")
+
+boton = ttk.Button(text="¡Hola, mundo!")
+boton.place(x=50, y=50)
+
+
 mywindow.mainloop()
+
 
 #conexion a base de datos
 
