@@ -4,29 +4,28 @@ import pyodbc
 
 mywindow = tk.Tk()
 mywindow.title("Ingreso Cliente Nuevo")
-mywindow.geometry("600x400")
-mywindow.resizable(0, 0)
+mywindow.resizable(1, 1)
 
 content = ttk.Frame(mywindow)
 frame = ttk.Frame(content, borderwidth=5, relief="ridge", width=200, height=100)
 namelbl = ttk.Label(content, text="Name")
 name = ttk.Entry(content)
 
-botone = tk.Button(mywindow, text="Enviar")
-botone.place(x=30, y=350)
+botone = ttk.Button(mywindow, text="Enviar")
+botone.grid(column=1, row=3, sticky=tk.W, padx=5, pady=5)
 botonc = ttk.Button(text="Cancelar")
-botonc.place(x=500, y=350)
+botonc.grid(column=2, row=3, sticky=tk.E, padx=5, pady=5)
 
-tk.Label(mywindow, text="Nombre del cliente").grid(row=1, column=1)
-tk.Label(mywindow, text="Nombre de la empresa").grid(row=2, column=1)
+tk.Label(mywindow, text="Nombre del cliente").grid(row=1, column=1, sticky=tk.SW, padx=5, pady=5)
+tk.Label(mywindow, text="Nombre de la empresa").grid(row=2, column=1, sticky=tk.SE, padx=5, pady=5)
 
 # Create the entry objects using master
 cnombre = tk.Entry(mywindow)
 cempresa = tk.Entry(mywindow)
  
 # Pack them using grid
-cnombre.grid(row=1, column=2)
-cempresa.grid(row=2, column=2)
+cnombre.grid(row=1, column=2, sticky=tk.W, padx=5, pady=5)
+cempresa.grid(row=2, column=2, sticky=tk.E, padx=5, pady=5)
 
 mywindow.mainloop()
 
