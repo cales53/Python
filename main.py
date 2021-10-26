@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import pyodbc
-from tkinter.messagebox import showinfo
+#from tkinter.messagebox import showinfo
 
 server = "192.168.1.89"
 bd = "Clientes"
