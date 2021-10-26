@@ -12,13 +12,16 @@ try:
     print("Conexion exitosa")
 except:
     print("Conexion fallida")
+def consulta():
+    print('Button clicked')
 
 mywindow = tk.Tk()
 mywindow.title("Ingreso Cliente Nuevo")
 mywindow.resizable(1, 1)
 
-botone = ttk.Button(text="Enviar")
+botone = ttk.Button(mywindow, text="Enviar", command=consulta)
 botone.grid(column=1, row=9, sticky=tk.SW, padx=5, pady=5)
+
 botonc = ttk.Button(
     mywindow, 
     text="Cancelar",
@@ -32,6 +35,7 @@ tk.Label(mywindow, text="Cargo").grid(row=3, column=1, sticky=tk.W, padx=5, pady
 tk.Label(mywindow, text="Celular").grid(row=4, column=1, sticky=tk.W, padx=5, pady=5)
 
 # Crear las cajas de ingreso
+
 cnombre = tk.Entry(mywindow)
 cempresa = tk.Entry(mywindow)
 ccargo = tk.Entry(mywindow)
