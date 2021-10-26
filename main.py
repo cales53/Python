@@ -14,6 +14,14 @@ except:
     print("Conexion fallida")
 def consulta():
     print('Button clicked')
+    cursor = conexion.cursor()
+    cursor.execute("select * from persona;")
+    personas = cursor.fetchall()
+    for persona in personas:
+        print(persona)    
+    cursor.commit()
+    cursor.commit()
+    cursor.close()
 
 mywindow = tk.Tk()
 mywindow.title("Ingreso Cliente Nuevo")
