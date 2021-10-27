@@ -7,5 +7,5 @@ Para lograr la implementación del sistema de desarrollo sobre Python con librer
 3. Normalmente incluye la instalación de la libreria de TKINTER pero es bueno revisar que esta este en buen funcionamiento.
 4. Instalar la libreria de PYODBC, y realizar pruebas de conexion con el servidor de base de datos. (La pagina oficial recomienda la instalación del entorno virtual)
 5. Contar con el controlador de ODBC para la version correspondiente a la base de datos, en nuestro caso la 11
-6. Crear ek Widget para separar de forma ordenada la ventana con los componentes pertenecientes.
+6. Crear el Widget para separar de forma ordenada la ventana con los componentes pertenecientes.
 
