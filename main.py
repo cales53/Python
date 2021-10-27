@@ -1,5 +1,7 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import Entry, StringVar, ttk
+from tkinter.constants import CHAR
+from typing import Text
 import pyodbc
 #from tkinter.messagebox import showinfo
 
@@ -12,23 +14,22 @@ try:
     print("Conexion exitosa")
 except:
     print("Conexion fallida")
-def consulta():
-    print('Button clicked')
+
+def consulta(cnombre,cempresa,ccargo,cphone):
+    apellido =''
     cursor = conexion.cursor()
+    consulta = "Insert into persona(nombre, apellidos, ntelefono,empresa,cargo) values (?,?,?,?,?)"
+    cursor.execute(consulta, cnombre,apellido,cphone,cempresa,ccargo)
     cursor.execute("select * from persona;")
     personas = cursor.fetchall()
     for persona in personas:
         print(persona)    
-    cursor.commit()
     cursor.commit()
     cursor.close()
 
 mywindow = tk.Tk()
 mywindow.title("Ingreso Cliente Nuevo")
 mywindow.resizable(1, 1)
-
-botone = ttk.Button(mywindow, text="Enviar", command=consulta)
-botone.grid(column=1, row=9, sticky=tk.SW, padx=5, pady=5)
 
 botonc = ttk.Button(
     mywindow, 
@@ -43,23 +44,28 @@ tk.Label(mywindow, text="Cargo").grid(row=3, column=1, sticky=tk.W, padx=5, pady
 tk.Label(mywindow, text="Celular").grid(row=4, column=1, sticky=tk.W, padx=5, pady=5)
 
 # Crear las cajas de ingreso
-
 cnombre = tk.Entry(mywindow)
 cempresa = tk.Entry(mywindow)
 ccargo = tk.Entry(mywindow)
 cphone = tk.Entry(mywindow)
- 
 # cajones en grid
 cnombre.grid(row=1, column=2, sticky=tk.W, padx=5, pady=5)
 cempresa.grid(row=2, column=2, sticky=tk.W, padx=5, pady=5)
 ccargo.grid(row=3, column=2, sticky=tk.W, padx=5, pady=5)
 cphone.grid(row=4, column=2, sticky=tk.W, padx=5, pady=5)
 
+botone = ttk.Button(
+    mywindow, 
+    text="Enviar", 
+    command=lambda:consulta(cnombre.get(),cempresa.get(),ccargo.get(),cphone.get())
+)
+botone.grid(column=1, row=9, sticky=tk.SW, padx=5, pady=5)
+
 mywindow.mainloop()
 
 #Conexion a base de datos
 
-cursor = conexion.cursor()
+'''cursor = conexion.cursor()
 cursor.execute("select * from persona;")
 personas = cursor.fetchall()
 for persona in personas:
@@ -67,7 +73,7 @@ for persona in personas:
 cursor.commit()
 cursor.close()
 
-conexion.close()
+conexion.close()'''
 
 '''def cant():
     mywindow2 = tk.Tk()
