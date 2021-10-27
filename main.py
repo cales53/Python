@@ -16,10 +16,9 @@ except:
     print("Conexion fallida")
 
 def consulta(cnombre,cempresa,ccargo,cphone):
-    apellido =''
     cursor = conexion.cursor()
-    consulta = "Insert into persona(nombre, apellidos, ntelefono,empresa,cargo) values (?,?,?,?,?)"
-    cursor.execute(consulta, cnombre,apellido,cphone,cempresa,ccargo)
+    consulta = "Insert into persona(nombre,ntelefono,empresa,cargo) values (?,?,?,?)"
+    cursor.execute(consulta,cnombre,cphone,cempresa,ccargo)
     cursor.execute("select * from persona;")
     personas = cursor.fetchall()
     for persona in personas:
@@ -28,7 +27,7 @@ def consulta(cnombre,cempresa,ccargo,cphone):
     cursor.close()
 
 mywindow = tk.Tk()
-mywindow.title("Ingreso Cliente Nuevo")
+mywindow.title("Nuevo Cliente")
 mywindow.resizable(1, 1)
 
 botonc = ttk.Button(

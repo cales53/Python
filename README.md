@@ -1,4 +1,4 @@
-# Python
+# Desarrollo e implementacion en Python
 
 Para lograr la implementación del sistema de desarrollo sobre Python con librerias TKINTER Y PYODBC se requiere lo siguiente:
 
