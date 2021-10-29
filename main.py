@@ -1,11 +1,13 @@
 import tkinter as tk
 from tkinter import ttk
 from nuevocliente import WindowCliente
+from cantidades import openNewWindow
+from actualizarcliente import ActualizarCliente
 
 root = tk.Tk()
-root.title("Nuevo Cliente")
-root.resizable(1, 1)
+root.title("Nueva Oferta Economica")
 
+root.minsize(300, 100)
 
 botonNC = ttk.Button(
     root, 
@@ -16,7 +18,7 @@ botonNC.grid(column=1, row=1, sticky=tk.NW, padx=5, pady=5)
 botonAC = ttk.Button(
     root, 
     text="Actualizar Cliente", 
-    command=lambda:WindowCliente()
+    command=lambda:ActualizarCliente()
 )
 botonAC.grid(column=1, row=2, sticky=tk.W, padx=5, pady=5)
 botonNO = ttk.Button(
@@ -25,10 +27,11 @@ botonNO = ttk.Button(
     command=lambda:root.quit()
 )
 botonNO.grid(column=1, row=3, sticky=tk.SW ,padx=5, pady=5)
+
 botonc = ttk.Button(
     root, 
     text="Salir", 
     command=lambda:root.quit()
 )
-botonc.grid(column=1, row=4, sticky=tk.SE, padx=5, pady=5)
+botonc.grid(column=2, row=4, sticky=tk.SE)
 root.mainloop()
