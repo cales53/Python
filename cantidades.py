@@ -9,3 +9,5 @@ def openNewWindow():
     windowscomprobacion= tk.Tk()
     windowscomprobacion.title("Cantidades")
     windowscomprobacion.resizable(1, 1)
+
+    

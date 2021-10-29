@@ -24,7 +24,7 @@ botonAC.grid(column=1, row=2, sticky=tk.W, padx=5, pady=5)
 botonNO = ttk.Button(
     root, 
     text="Creación Oferta", 
-    command=lambda:root.quit()
+    command=lambda:openNewWindow()
 )
 botonNO.grid(column=1, row=3, sticky=tk.SW ,padx=5, pady=5)
 
