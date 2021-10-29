@@ -3,17 +3,9 @@ from tkinter import Entry, StringVar, ttk
 from tkinter.constants import CHAR
 from typing import Text
 import pyodbc
+from configuracion import server, bd, usuario, contrasena
 #from tkinter.messagebox import showinfo
-
-server = "192.168.1.89"
-bd = "Clientes"
-usuario = "usuario"
-contrasena = "Manager21"
-try:
-    conexion = pyodbc.connect("DRIVER={ODBC Driver 11 for SQL Server}; SERVER="+server+";DATABASE="+bd+";UID="+usuario+";PWD="+contrasena)
-    print("Conexion exitosa")
-except:
-    print("Conexion fallida")
+conexion = pyodbc.connect("DRIVER={ODBC Driver 11 for SQL Server}; SERVER="+server+";DATABASE="+bd+";UID="+usuario+";PWD="+contrasena)
 
 def consulta(cnombre,cempresa,ccargo,cphone):
     cursor = conexion.cursor()
@@ -25,7 +17,11 @@ def consulta(cnombre,cempresa,ccargo,cphone):
         print(persona)    
     cursor.commit()
     cursor.close()
-
+    # creacion de una segunda ventana para dar continuacion al ingreso de cantidades
+    from cantidades import openNewWindow
+    openNewWindow()
+    
+    
 mywindow = tk.Tk()
 mywindow.title("Nuevo Cliente")
 mywindow.resizable(1, 1)
