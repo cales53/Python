@@ -49,6 +49,13 @@ def WindowCliente():
         command=lambda:consulta(cnombre.get(),cempresa.get(),ccargo.get(),cphone.get())
     )
     botone.grid(column=1, row=9, sticky=tk.SW, padx=5, pady=5)
+
+    botonc = ttk.Button(
+        nuevocliente, 
+        text="Cancelar",
+        command=lambda: nuevocliente.quit()
+    )
+    botonc.grid(column=2, row=9, sticky=tk.SE, padx=5, pady=5)
 #Conexion a base de datos
 
 '''cursor = conexion.cursor()

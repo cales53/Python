@@ -20,10 +20,19 @@ def ActualizarCliente():
         pass
 
     # month of year
-    nombres = ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec')
+    
+    cursor = conexion.cursor()
+    consulta=("SELECT nombre  FROM [dbo].[persona] WHERE nombre = ?")
+    cursor.execute(consulta,'carlos')
+    nombres = cursor.fetchall()
+    print(nombres)
+    cursor.commit()
+    cursor.close()
+
     empresas = ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
             'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec')
+    print(empresas)
+
     selected_nombre = tk.StringVar()
     selected_empresa = tk.StringVar()
 
