@@ -24,27 +24,27 @@ def consulta(cnombre,cempresa,ccargo,cphone):
     openNewWindow()
     
 def WindowCliente():  
-    mywindow = tk.Tk()
-    mywindow.title("Nuevo Cliente")
-    mywindow.resizable(1, 1)
+    nuevocliente = tk.Tk()
+    nuevocliente.title("Nuevo Cliente")
+    nuevocliente.resizable(1, 1)
 
     botonc = ttk.Button(
-        mywindow, 
+        nuevocliente, 
         text="Cancelar",
-        command=lambda: mywindow.quit()
+        command=lambda: nuevocliente.quit()
     )
     botonc.grid(column=2, row=9, sticky=tk.SE, padx=5, pady=5)
 
-    tk.Label(mywindow, text="Nombre del cliente").grid(row=1, column=1, sticky=tk.W, padx=5, pady=5)
-    tk.Label(mywindow, text="Nombre de la empresa").grid(row=2, column=1, sticky=tk.W, padx=5, pady=5)
-    tk.Label(mywindow, text="Cargo").grid(row=3, column=1, sticky=tk.W, padx=5, pady=5)
-    tk.Label(mywindow, text="Celular").grid(row=4, column=1, sticky=tk.W, padx=5, pady=5)
+    tk.Label(nuevocliente, text="Nombre del cliente").grid(row=1, column=1, sticky=tk.W, padx=5, pady=5)
+    tk.Label(nuevocliente, text="Nombre de la empresa").grid(row=2, column=1, sticky=tk.W, padx=5, pady=5)
+    tk.Label(nuevocliente, text="Cargo").grid(row=3, column=1, sticky=tk.W, padx=5, pady=5)
+    tk.Label(nuevocliente, text="Celular").grid(row=4, column=1, sticky=tk.W, padx=5, pady=5)
 
     # Crear las cajas de ingreso
-    cnombre = tk.Entry(mywindow)
-    cempresa = tk.Entry(mywindow)
-    ccargo = tk.Entry(mywindow)
-    cphone = tk.Entry(mywindow)
+    cnombre = tk.Entry(nuevocliente)
+    cempresa = tk.Entry(nuevocliente)
+    ccargo = tk.Entry(nuevocliente)
+    cphone = tk.Entry(nuevocliente)
     # cajones en grid
     cnombre.grid(row=1, column=2, sticky=tk.W, padx=5, pady=5)
     cempresa.grid(row=2, column=2, sticky=tk.W, padx=5, pady=5)
@@ -52,13 +52,11 @@ def WindowCliente():
     cphone.grid(row=4, column=2, sticky=tk.W, padx=5, pady=5)
 
     botone = ttk.Button(
-        mywindow, 
+        nuevocliente, 
         text="Enviar", 
         command=lambda:consulta(cnombre.get(),cempresa.get(),ccargo.get(),cphone.get())
     )
     botone.grid(column=1, row=9, sticky=tk.SW, padx=5, pady=5)
-
-    mywindow.mainloop()
 
 #Conexion a base de datos
 

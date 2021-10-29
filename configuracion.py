@@ -1,4 +1,5 @@
 import pyodbc
+
 server = "192.168.1.89"
 bd = "Clientes"
 usuario = "usuario"
@@ -9,4 +10,3 @@ try:
     print("Conexion exitosa")
 except:
     print("Conexion fallida")
-    
