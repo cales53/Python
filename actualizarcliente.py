@@ -22,16 +22,19 @@ def ActualizarCliente():
     # month of year
     
     cursor = conexion.cursor()
-    consulta=("SELECT nombre  FROM [dbo].[persona] WHERE nombre = ?")
-    cursor.execute(consulta,'carlos')
-    nombres = cursor.fetchall()
-    print(nombres)
+    cursor.execute("SELECT nombre FROM [dbo].[persona]")
+    tuplen = cursor.fetchall()
+    nombres = [_[0] for _ in tuplen]
     cursor.commit()
     cursor.close()
+    print(nombres)
 
-    empresas = ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec')
-    print(empresas)
+    cursor = conexion.cursor()
+    cursor.execute("SELECT empresa FROM [dbo].[persona]")
+    tuplee = cursor.fetchall()
+    empresas = [_[0] for _ in tuplee]
+    cursor.commit()
+    cursor.close()
 
     selected_nombre = tk.StringVar()
     selected_empresa = tk.StringVar()
@@ -48,10 +51,19 @@ def ActualizarCliente():
     empresa_cb.grid(row=2, column=2)
     nombre_cb.bind('<<ComboboxSelected>>', month_changed)
 
+
+    cargo_en = tk.Entry(nuevocliente)
+    phone_en = tk.Entry(nuevocliente)
+
+    cargo_en.grid(row=3, column=2, sticky=tk.W, padx=5, pady=5)
+    phone_en.grid(row=4, column=2, sticky=tk.W, padx=5, pady=5)
+
+
     tk.Label(nuevocliente, text="Nombre del cliente").grid(row=1, column=1, sticky=tk.W, padx=5, pady=5)
     tk.Label(nuevocliente, text="Nombre de la empresa").grid(row=2, column=1, sticky=tk.W, padx=5, pady=5)
     tk.Label(nuevocliente, text="Cargo").grid(row=3, column=1, sticky=tk.W, padx=5, pady=5)
     tk.Label(nuevocliente, text="Celular").grid(row=4, column=1, sticky=tk.W, padx=5, pady=5)
+
     botone = ttk.Button(
         nuevocliente, 
         text="Enviar", 
