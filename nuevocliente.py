@@ -13,7 +13,7 @@ def consulta(cnombre,cempresa,ccargo,cphone):
     cursor = conexion.cursor()
     consulta = "Insert into persona(nombre,ntelefono,empresa,cargo) values (?,?,?,?)"
     cursor.execute(consulta,cnombre,cphone,cempresa,ccargo)
-    cursor.execute("select * from persona;")
+    #cursor.execute("select * from persona;")
     personas = cursor.fetchall()
     for persona in personas:
         print(persona)    
@@ -26,6 +26,7 @@ def WindowCliente():
     nuevocliente = tk.Tk()
     nuevocliente.title("Nuevo Cliente")
     nuevocliente.resizable(1, 1)
+    nuevocliente.columnconfigure(1, weight=3)
 
     tk.Label(nuevocliente, text="Nombre del cliente").grid(row=1, column=1, sticky=tk.W, padx=5, pady=5)
     tk.Label(nuevocliente, text="Nombre de la empresa").grid(row=2, column=1, sticky=tk.W, padx=5, pady=5)
@@ -43,19 +44,20 @@ def WindowCliente():
     ccargo.grid(row=3, column=2, sticky=tk.W, padx=5, pady=5)
     cphone.grid(row=4, column=2, sticky=tk.W, padx=5, pady=5)
 
-    botone = ttk.Button(
+    '''botone = ttk.Button(
         nuevocliente, 
         text="Enviar", 
         command=lambda:consulta(cnombre.get(),cempresa.get(),ccargo.get(),cphone.get())
     )
-    botone.grid(column=1, row=9, sticky=tk.SW, padx=5, pady=5)
-
-    botonc = ttk.Button(
-        nuevocliente, 
-        text="Cancelar",
-        command=lambda: nuevocliente.quit()
+    botone.grid(column=3, row=9, sticky=tk.SW, padx=5, pady=5)'''
+    botonNO = ttk.Button(
+    nuevocliente, 
+    text="Creación Oferta", 
+    command=lambda:openNewWindow()
     )
-    botonc.grid(column=2, row=9, sticky=tk.SE, padx=5, pady=5)
+
+    botonNO.grid(column=1, row=9, sticky=tk.SW ,padx=5, pady=5)
+    
 #Conexion a base de datos
 
 '''cursor = conexion.cursor()

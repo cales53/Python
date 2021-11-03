@@ -15,6 +15,7 @@ def ActualizarCliente():
     nuevocliente.title("Actualizar Cliente")
     nuevocliente.resizable(1, 1)
     nuevocliente.minsize(300,100)
+    nuevocliente.columnconfigure(1, weight=3)
 
     def month_changed(event):
         pass
@@ -27,7 +28,7 @@ def ActualizarCliente():
     nombres = [_[0] for _ in tuplen]
     cursor.commit()
     cursor.close()
-    print(nombres)
+    #print(nombres)
 
     cursor = conexion.cursor()
     cursor.execute("SELECT empresa FROM [dbo].[persona]")
@@ -64,9 +65,10 @@ def ActualizarCliente():
     tk.Label(nuevocliente, text="Cargo").grid(row=3, column=1, sticky=tk.W, padx=5, pady=5)
     tk.Label(nuevocliente, text="Celular").grid(row=4, column=1, sticky=tk.W, padx=5, pady=5)
 
-    botone = ttk.Button(
-        nuevocliente, 
-        text="Enviar", 
-        #command=lambda:
+    botonNO = ttk.Button(
+    nuevocliente, 
+    text="Creación Oferta", 
+    command=lambda:openNewWindow()
     )
-    botone.grid(column=1, row=9, sticky=tk.SW, padx=5, pady=5)
+
+    botonNO.grid(column=1, row=5, sticky=tk.SW ,padx=5, pady=5)
