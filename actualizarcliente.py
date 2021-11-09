@@ -17,18 +17,17 @@ def ActualizarCliente():
     nuevocliente.minsize(300,100)
     nuevocliente.columnconfigure(1, weight=3)
 
-    def month_changed(event):
+    def nombre_changed(event):
+        pass
+    def empresa_changed(event):
         pass
 
-    # month of year
-    
     cursor = conexion.cursor()
     cursor.execute("SELECT nombre FROM [dbo].[persona]")
     tuplen = cursor.fetchall()
     nombres = [_[0] for _ in tuplen]
     cursor.commit()
     cursor.close()
-    #print(nombres)
 
     cursor = conexion.cursor()
     cursor.execute("SELECT empresa FROM [dbo].[persona]")
@@ -42,16 +41,15 @@ def ActualizarCliente():
 
     nombre_cb = ttk.Combobox(nuevocliente, textvariable=selected_nombre)
     nombre_cb['values'] = nombres
-    nombre_cb['state'] = 'readonly'  # normal
+    nombre_cb['state'] = 'normal'  # normal
     nombre_cb.grid(row=1, column=2)
-    nombre_cb.bind('<<ComboboxSelected>>', month_changed)
+    nombre_cb.bind('<<ComboboxSelected>>', nombre_changed)
 
     empresa_cb = ttk.Combobox(nuevocliente, textvariable=selected_empresa)
     empresa_cb['values'] = empresas
-    empresa_cb['state'] = 'readonly'  # normal
+    empresa_cb['state'] = 'normal'  # normal
     empresa_cb.grid(row=2, column=2)
-    nombre_cb.bind('<<ComboboxSelected>>', month_changed)
-
+    nombre_cb.bind('<<ComboboxSelected>>', empresa_changed)
 
     cargo_en = tk.Entry(nuevocliente)
     phone_en = tk.Entry(nuevocliente)
@@ -72,3 +70,4 @@ def ActualizarCliente():
     )
 
     botonNO.grid(column=1, row=5, sticky=tk.SW ,padx=5, pady=5)
+    

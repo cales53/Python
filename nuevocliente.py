@@ -11,12 +11,8 @@ conexion = pyodbc.connect("DRIVER={ODBC Driver 11 for SQL Server}; SERVER="+serv
 
 def consulta(cnombre,cempresa,ccargo,cphone):
     cursor = conexion.cursor()
-    consulta = "Insert into persona(nombre,ntelefono,empresa,cargo) values (?,?,?,?)"
+    consulta = "insert into persona(nombre,ntelefono,empresa,cargo) values (?,?,?,?);"
     cursor.execute(consulta,cnombre,cphone,cempresa,ccargo)
-    #cursor.execute("select * from persona;")
-    personas = cursor.fetchall()
-    for persona in personas:
-        print(persona)    
     cursor.commit()
     cursor.close()
     # creacion de una segunda ventana para dar continuacion al ingreso de cantidades
@@ -44,16 +40,10 @@ def WindowCliente():
     ccargo.grid(row=3, column=2, sticky=tk.W, padx=5, pady=5)
     cphone.grid(row=4, column=2, sticky=tk.W, padx=5, pady=5)
 
-    '''botone = ttk.Button(
-        nuevocliente, 
-        text="Enviar", 
-        command=lambda:consulta(cnombre.get(),cempresa.get(),ccargo.get(),cphone.get())
-    )
-    botone.grid(column=3, row=9, sticky=tk.SW, padx=5, pady=5)'''
     botonNO = ttk.Button(
     nuevocliente, 
     text="Creación Oferta", 
-    command=lambda:openNewWindow()
+    command=lambda:consulta(cnombre.get(),cempresa.get(),ccargo.get(),cphone.get())
     )
 
     botonNO.grid(column=1, row=9, sticky=tk.SW ,padx=5, pady=5)
