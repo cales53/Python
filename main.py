@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import Label, PhotoImage, ttk
 from nuevocliente import WindowCliente
 from actualizarcliente import ActualizarCliente
+from validacion import validacion
 
 root = tk.Tk()
 root.title("Nueva Oferta Economica")
@@ -24,13 +25,21 @@ botonAC = ttk.Button(
 
 botonAC.grid(column=1, row=2, sticky=tk.W, padx=5, pady=5)
 
+botonAP = ttk.Button(
+    root, 
+    text="Actualizar Precios", 
+    command=lambda:validacion()
+)
+
+botonAP.grid(column=1, row=3, sticky=tk.W, padx=5, pady=5)
 
 botonc = ttk.Button(
     root, 
     text="Salir", 
     command=lambda:root.quit()
 )
-botonc.grid(column=2, row=3, sticky=tk.SE, padx=5, pady=5)
+botonc.grid(column=2, row=4, sticky=tk.SE, padx=5, pady=5)
+
 
 #root.geometry("275x57")
 imagen=PhotoImage(file=r"D:\User\Documentos\Python\Imagenes\logo.png")
