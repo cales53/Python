@@ -27,16 +27,51 @@ def ActualizarCliente():
     phone_en.grid(row=4, column=2, sticky=tk.W, padx=5, pady=5)
 
     def nombre_changed(event):
+
         cargo_en.delete(0, tk.END)
+        phone_en.delete(0, tk.END)
+        empresa_cb.delete(0, tk.END)
         cursor = conexion.cursor()
+
         cursor.execute("SELECT cargo FROM [dbo].[persona]")
         tuplec = cursor.fetchall()
         cargos = [_[0] for _ in tuplec]
-        cargo_en.insert(10, cargos)
+        cursor.execute("SELECT ntelefono FROM [dbo].[persona]")
+        tuplet = cursor.fetchall()
+        phones = [_[0] for _ in tuplet]
+        cursor.execute("SELECT empresa FROM [dbo].[persona]")
+        tuplee = cursor.fetchall()
+        companies = [_[0] for _ in tuplee]
+
+        cargo_en.insert(10, cargos[nombre_cb.current()])
+        phone_en.insert(10, phones[nombre_cb.current()])
+        empresa_cb.insert(10, companies[nombre_cb.current()])
         cursor.commit()
         cursor.close()
 
     def empresa_changed(event):
+
+        cargo_en.delete(0, tk.END)
+        phone_en.delete(0, tk.END)
+        nombre_cb.delete(0, tk.END)
+
+        cursor = conexion.cursor()
+
+        cursor.execute("SELECT nombre FROM [dbo].[persona]")
+        tuplen = cursor.fetchall()
+        names = [_[0] for _ in tuplen]
+        cursor.execute("SELECT cargo FROM [dbo].[persona]")
+        tuplec = cursor.fetchall()
+        cargos = [_[0] for _ in tuplec]
+        cursor.execute("SELECT ntelefono FROM [dbo].[persona]")
+        tuplet = cursor.fetchall()
+        phones = [_[0] for _ in tuplet]
+
+        cargo_en.insert(10, cargos[empresa_cb.current()])
+        phone_en.insert(10, phones[empresa_cb.current()])
+        nombre_cb.insert(10, names[empresa_cb.current()])
+        cursor.commit()
+        cursor.close()
         pass
 
     cursor = conexion.cursor()
