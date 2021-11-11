@@ -21,8 +21,7 @@ def validacion():
 
     # Crear las cajas de ingreso
     cusuario = tk.Entry(validacion)
-    ccontrasena = tk.Entry(validacion)
-
+    ccontrasena = tk.Entry(validacion, show="*")
     cusuario.grid(row=1, column=2, sticky=tk.W, padx=5, pady=5)
     ccontrasena.grid(row=2, column=2, sticky=tk.W, padx=5, pady=5)
 

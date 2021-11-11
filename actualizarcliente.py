@@ -46,6 +46,9 @@ def ActualizarCliente():
         cargo_en.insert(10, cargos[nombre_cb.current()])
         phone_en.insert(10, phones[nombre_cb.current()])
         empresa_cb.insert(10, companies[nombre_cb.current()])
+
+        
+
         cursor.commit()
         cursor.close()
 
@@ -70,6 +73,9 @@ def ActualizarCliente():
         cargo_en.insert(10, cargos[empresa_cb.current()])
         phone_en.insert(10, phones[empresa_cb.current()])
         nombre_cb.insert(10, names[empresa_cb.current()])
+
+
+
         cursor.commit()
         cursor.close()
         pass
