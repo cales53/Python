@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import Entry, StringVar, ttk
-from tkinter.constants import CHAR, NS
+from tkinter.constants import CHAR, NS, NUMERIC
 from typing import Text
 import pyodbc
 from configuracion import server, bd, usuario, contrasena
@@ -17,8 +17,25 @@ def ActualizarCliente():
     nuevocliente.minsize(300,100)
     nuevocliente.columnconfigure(1, weight=3)
 
+    selected_nombre = tk.StringVar()
+    selected_empresa = tk.StringVar()
+
+    cargo_en = tk.Entry(nuevocliente)
+    phone_en = tk.Entry(nuevocliente)
+
+    cargo_en.grid(row=3, column=2, sticky=tk.W, padx=5, pady=5)
+    phone_en.grid(row=4, column=2, sticky=tk.W, padx=5, pady=5)
+
     def nombre_changed(event):
-        pass
+        cargo_en.delete(0, tk.END)
+        cursor = conexion.cursor()
+        cursor.execute("SELECT cargo FROM [dbo].[persona]")
+        tuplec = cursor.fetchall()
+        cargos = [_[0] for _ in tuplec]
+        cargo_en.insert(10, cargos)
+        cursor.commit()
+        cursor.close()
+
     def empresa_changed(event):
         pass
 
@@ -36,27 +53,17 @@ def ActualizarCliente():
     cursor.commit()
     cursor.close()
 
-    selected_nombre = tk.StringVar()
-    selected_empresa = tk.StringVar()
-
     nombre_cb = ttk.Combobox(nuevocliente, textvariable=selected_nombre)
     nombre_cb['values'] = nombres
     nombre_cb['state'] = 'normal'  # normal
     nombre_cb.grid(row=1, column=2)
     nombre_cb.bind('<<ComboboxSelected>>', nombre_changed)
-
+    
     empresa_cb = ttk.Combobox(nuevocliente, textvariable=selected_empresa)
     empresa_cb['values'] = empresas
     empresa_cb['state'] = 'normal'  # normal
     empresa_cb.grid(row=2, column=2)
-    nombre_cb.bind('<<ComboboxSelected>>', empresa_changed)
-
-    cargo_en = tk.Entry(nuevocliente)
-    phone_en = tk.Entry(nuevocliente)
-
-    cargo_en.grid(row=3, column=2, sticky=tk.W, padx=5, pady=5)
-    phone_en.grid(row=4, column=2, sticky=tk.W, padx=5, pady=5)
-
+    empresa_cb.bind('<<ComboboxSelected>>', empresa_changed)
 
     tk.Label(nuevocliente, text="Nombre del cliente").grid(row=1, column=1, sticky=tk.W, padx=5, pady=5)
     tk.Label(nuevocliente, text="Nombre de la empresa").grid(row=2, column=1, sticky=tk.W, padx=5, pady=5)
