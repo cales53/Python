@@ -41,6 +41,20 @@ def ActualizarPrecios():
     cmdl60a = tk.Entry(precios)
     cmdl100a = tk.Entry(precios)
 
+
+    cconcetrador.insert(10, "2.000.000")
+    ccontrol.insert(10, "608.000")
+    cintercon.insert(10, "170.000")
+    cmicro.insert(10, "238.000")
+    cfuente.insert(10, "84.000")
+    cupc.insert(10, "1.800.000")
+    cmdlcel.insert(10, "922.000")
+    ccdmlrf.insert(10, "380.000")
+    cdis.insert(10, "172.000")
+    cmdl5a.insert(10, "99.000")
+    cmdl60a.insert(10, "117.000")
+    cmdl100a.insert(10, "135.000")
+
     # cajones en grid
     cconcetrador.grid(row=1, column=2, sticky=tk.W, padx=5, pady=5)
     ccontrol.grid(row=2, column=2, sticky=tk.W, padx=5, pady=5)
@@ -58,7 +72,7 @@ def ActualizarPrecios():
 
     botonSI = ttk.Button(
     precios, 
-    text="Login", 
+    text="Enviar", 
     command=lambda:ActualizarPrecios()
     )
 
