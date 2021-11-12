@@ -4,19 +4,26 @@ from tkinter.constants import CHAR
 from typing import Text
 import pyodbc
 from configuracion import server, bd, usuario, contrasena
-from cantidades import openNewWindow
+from tipoofc import tipoWindow
 
 #from tkinter.messagebox import showinfo
 conexion = pyodbc.connect("DRIVER={ODBC Driver 11 for SQL Server}; SERVER="+server+";DATABASE="+bd+";UID="+usuario+";PWD="+contrasena)
 
 def consulta(cnombre,cempresa,ccargo,cphone):
+    #clear de db donde nombre es null
+    cursor = conexion.cursor()
+    consulta = "delete from persona WHERE nombre = '';"
+    cursor.execute(consulta)
+    cursor.commit()
+    cursor.close()
+
     cursor = conexion.cursor()
     consulta = "insert into persona(nombre,ntelefono,empresa,cargo) values (?,?,?,?);"
     cursor.execute(consulta,cnombre,cphone,cempresa,ccargo)
     cursor.commit()
     cursor.close()
     # creacion de una segunda ventana para dar continuacion al ingreso de cantidades
-    openNewWindow()
+    tipoWindow()
     
 def WindowCliente():  
     nuevocliente = tk.Tk()
