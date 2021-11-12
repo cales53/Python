@@ -13,20 +13,21 @@ def val(cusuario, ccontrasena):
     cursor = conexion.cursor()
     cursor.execute("SELECT username FROM [dbo].[validacion];")
     tupleuser = cursor.fetchall()
-    usuarios = ' '.join([_[0] for _ in tupleuser])
-    if(cusuario == usuarios):
-        ActualizarPrecios()
-    else:
-        messagebox.showinfo(message="Usuario erroneo")
-        #print('Usuario erroneo')
+    cursor1 = conexion.cursor()
+    cursor1.execute("SELECT pass FROM [dbo].[validacion];")
+    tuplepass = cursor1.fetchall()
+    for x in tupleuser: 
+        usuario = ' '.join(x)
+        if(cusuario == usuario):
+            print(tupleuser.index(x))
+            
+            ActualizarPrecios()
     cursor.commit()
     cursor.close()
-    #ActualizarPrecios()
 
 def validacion():
     validacion = tk.Tk()
     validacion.title("Login")
-    #precios.resizable(1, 1)
     validacion.minsize(150,100)
     validacion.columnconfigure(1, weight=2)
 
