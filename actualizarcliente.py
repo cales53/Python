@@ -4,8 +4,8 @@ from tkinter.constants import CHAR, NS, NUMERIC
 from typing import Text
 import pyodbc
 from configuracion import server, bd, usuario, contrasena
-from cantidades import openNewWindow
 from tkinter.messagebox import showinfo
+from tipoofc import tipoWindow
 
 #from tkinter.messagebox import showinfo
 conexion = pyodbc.connect("DRIVER={ODBC Driver 11 for SQL Server}; SERVER="+server+";DATABASE="+bd+";UID="+usuario+";PWD="+contrasena)
@@ -114,7 +114,7 @@ def ActualizarCliente():
     botonNO = ttk.Button(
     nuevocliente, 
     text="Creación Oferta", 
-    command=lambda:openNewWindow()
+    command=lambda:tipoWindow()
     )
 
     botonNO.grid(column=1, row=5, sticky=tk.SW ,padx=5, pady=5)
