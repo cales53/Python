@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import Label, PhotoImage, ttk
-
 from actualizarcliente import ActualizarCliente
 from nuevocliente import WindowCliente
 from validacion import validacion
