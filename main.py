@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import Label, PhotoImage, ttk
-from nuevocliente import WindowCliente
+
 from actualizarcliente import ActualizarCliente
+from nuevocliente import WindowCliente
 from validacion import validacion
 
 root = tk.Tk()
