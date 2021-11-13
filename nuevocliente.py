@@ -23,7 +23,7 @@ def consulta(cnombre,cempresa,ccargo,cphone):
     cursor.commit()
     cursor.close()
     # creacion de una segunda ventana para dar continuacion al ingreso de cantidades
-    tipoWindow()
+    tipoWindow(cnombre,cempresa,ccargo,cphone)
     
 def WindowCliente():  
     nuevocliente = tk.Tk()

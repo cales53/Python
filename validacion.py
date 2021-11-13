@@ -26,12 +26,12 @@ def val(cusuario, ccontrasena):
                 ActualizarPrecios()
             if(ccontrasena != contrasena):
                  c = c + 1
-                 print("Contraseña Erronea")
+                 if(c == 1): 
+                    messagebox.showwarning("Advertencia", "Contraseña Erronea")
         if (cusuario != usuario):
             u = u + 1
-            print(u)
-            print(len(tupleuser))
-            print("Usuario Erroneo")
+            if(u == len(tupleuser)): 
+                messagebox.showwarning("Advertencia", "Usuario Erroneo")
     cursor.commit()
     cursor.close()
 
