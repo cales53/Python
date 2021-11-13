@@ -15,7 +15,7 @@ def tipoWindow(nombre, empresa, cargo, phone):
 
     cursor = conexion.cursor()
     consulta = "update persona set ntelefono = ? , nombre = ?, cargo = ? where empresa = ?;"
-    cursor.execute(consulta,phone, nombre, cargo, empresa)
+    cursor.execute(consulta, phone, nombre, cargo, empresa)
     cursor.commit()
     cursor.close()
 

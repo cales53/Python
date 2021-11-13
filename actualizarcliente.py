@@ -47,8 +47,6 @@ def ActualizarCliente():
         phone_en.insert(10, phones[nombre_cb.current()])
         empresa_cb.insert(10, companies[nombre_cb.current()])
 
-        
-
         cursor.commit()
         cursor.close()
 
@@ -74,11 +72,8 @@ def ActualizarCliente():
         phone_en.insert(10, phones[empresa_cb.current()])
         nombre_cb.insert(10, names[empresa_cb.current()])
 
-
-
         cursor.commit()
         cursor.close()
-        pass
 
     cursor = conexion.cursor()
     cursor.execute("SELECT nombre FROM [dbo].[persona]")
@@ -114,7 +109,7 @@ def ActualizarCliente():
     botonNO = ttk.Button(
     nuevocliente, 
     text="Creación Oferta", 
-    command=lambda:tipoWindow()
+    command=lambda:tipoWindow(nombre_cb.get(),empresa_cb.get(),cargo_en.get(),phone_en.get())
     )
 
     botonNO.grid(column=1, row=5, sticky=tk.SW ,padx=5, pady=5)
