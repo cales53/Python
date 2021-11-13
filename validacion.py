@@ -10,6 +10,8 @@ from tkinter import messagebox
 conexion = pyodbc.connect("DRIVER={ODBC Driver 11 for SQL Server}; SERVER="+server+";DATABASE="+bd+";UID="+usuario+";PWD="+contrasena)
 
 def val(cusuario, ccontrasena):
+    u = 0
+    c = 0
     cursor = conexion.cursor()
     cursor.execute("SELECT username FROM [dbo].[validacion];")
     tupleuser = cursor.fetchall()
@@ -19,9 +21,17 @@ def val(cusuario, ccontrasena):
     for x in tupleuser: 
         usuario = ' '.join(x)
         if(cusuario == usuario):
-            print(tupleuser.index(x))
-            
-            ActualizarPrecios()
+            contrasena = ' '.join(tuplepass[tupleuser.index(x)])
+            if(ccontrasena == contrasena):
+                ActualizarPrecios()
+            if(ccontrasena != contrasena):
+                 c = c + 1
+                 print("Contraseña Erronea")
+        if (cusuario != usuario):
+            u = u + 1
+            print(u)
+            print(len(tupleuser))
+            print("Usuario Erroneo")
     cursor.commit()
     cursor.close()
 
