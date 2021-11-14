@@ -27,7 +27,6 @@ def ActualizarCliente():
     phone_en.grid(row=4, column=2, sticky=tk.W, padx=5, pady=5)
 
     def nombre_changed(event):
-
         #clear de db donde nombre es null
         cursor = conexion.cursor()
         consulta = "delete from persona WHERE nombre = '';"
@@ -58,7 +57,6 @@ def ActualizarCliente():
         cursor.close()
 
     def empresa_changed(event):
-
         cargo_en.delete(0, tk.END)
         phone_en.delete(0, tk.END)
         nombre_cb.delete(0, tk.END)
@@ -74,14 +72,15 @@ def ActualizarCliente():
         cursor.execute("SELECT ntelefono FROM [dbo].[persona]")
         tuplet = cursor.fetchall()
         phones = [_[0] for _ in tuplet]
+        cursor.commit()
 
         cargo_en.insert(10, cargos[empresa_cb.current()])
         phone_en.insert(10, phones[empresa_cb.current()])
         nombre_cb.insert(10, names[empresa_cb.current()])
-
+        
         cursor.commit()
         cursor.close()
-
+        
     cursor = conexion.cursor()
     cursor.execute("SELECT nombre FROM [dbo].[persona]")
     tuplen = cursor.fetchall()
@@ -108,24 +107,22 @@ def ActualizarCliente():
     nombre_cb['state'] = 'normal'  # normal
     nombre_cb.grid(row=1, column=2)
     nombre_cb.bind('<<ComboboxSelected>>', nombre_changed)
-    number = nombre_cb.current()
     
     empresa_cb = ttk.Combobox(nuevocliente, textvariable=selected_empresa)
     empresa_cb['values'] = empresas
     empresa_cb['state'] = 'normal'  # normal
     empresa_cb.grid(row=2, column=2)
     empresa_cb.bind('<<ComboboxSelected>>', empresa_changed)
-    number = nombre_cb.current()
 
     tk.Label(nuevocliente, text="Nombre del cliente").grid(row=1, column=1, sticky=tk.W, padx=5, pady=5)
     tk.Label(nuevocliente, text="Nombre de la empresa").grid(row=2, column=1, sticky=tk.W, padx=5, pady=5)
     tk.Label(nuevocliente, text="Cargo").grid(row=3, column=1, sticky=tk.W, padx=5, pady=5)
     tk.Label(nuevocliente, text="Celular").grid(row=4, column=1, sticky=tk.W, padx=5, pady=5)
-
+    #print(nombre_changed(nombre_cb.current()))
     botonNO = ttk.Button(
     nuevocliente, 
     text="Creación Oferta", 
-    command=lambda:tipoWindow(id[number],nombre_cb.get(),empresa_cb.get(),cargo_en.get(),phone_en.get())
+    command=lambda:tipoWindow(id[nombre_cb.current()],nombre_cb.get(),empresa_cb.get(),cargo_en.get(),phone_en.get())
     )
 
     botonNO.grid(column=1, row=5, sticky=tk.SW ,padx=5, pady=5)
