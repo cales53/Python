@@ -5,17 +5,16 @@ from configuracion import server, bd, usuario, contrasena
 from cantidades import openNewWindow
 conexion = pyodbc.connect("DRIVER={ODBC Driver 11 for SQL Server}; SERVER="+server+";DATABASE="+bd+";UID="+usuario+";PWD="+contrasena)
 
-def tipoWindow(nombre, empresa, cargo, phone):
+def tipoWindow(id, nombre, empresa, cargo, phone):
     tipo= tk.Tk()
     tipo.title("Cantidades")
     tipo.resizable(1, 1)
     tipo.minsize(250,100)
     selected_tipo = tk.StringVar()
     cantidades = ('NUEVOS SUMINISTROS', 'REPUESTOS')
-
     cursor = conexion.cursor()
-    consulta = "update persona set ntelefono = ? , nombre = ?, cargo = ? where empresa = ?;"
-    cursor.execute(consulta, phone, nombre, cargo, empresa)
+    consulta = "update persona set ntelefono = ? , nombre = ?, cargo = ?, empresa = ? where id = ?;"
+    cursor.execute(consulta, phone, nombre, cargo, empresa, id)
     cursor.commit()
     cursor.close()
 

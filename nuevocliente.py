@@ -22,15 +22,23 @@ def consulta(cnombre,cempresa,ccargo,cphone):
     cursor.execute(consulta,cnombre,cphone,cempresa,ccargo)
     cursor.commit()
     cursor.close()
+
+    cursor = conexion.cursor()
+    cursor.execute("SELECT id FROM [dbo].[persona]")
+    tuplei = cursor.fetchall()
+    id = [_[0] for _ in tuplei]
+    cursor.commit()
+    cursor.close()
+    print(len(tuplei), len(tuplei)-1)
     # creacion de una segunda ventana para dar continuacion al ingreso de cantidades
-    tipoWindow(cnombre,cempresa,ccargo,cphone)
+    tipoWindow(id[len(tuplei)-1], cnombre,cempresa,ccargo,cphone)
     
 def WindowCliente():  
     nuevocliente = tk.Tk()
     nuevocliente.title("Nuevo Cliente")
     nuevocliente.resizable(1, 1)
     nuevocliente.columnconfigure(1, weight=3)
-
+    
     tk.Label(nuevocliente, text="Nombre del cliente").grid(row=1, column=1, sticky=tk.W, padx=5, pady=5)
     tk.Label(nuevocliente, text="Nombre de la empresa").grid(row=2, column=1, sticky=tk.W, padx=5, pady=5)
     tk.Label(nuevocliente, text="Cargo").grid(row=3, column=1, sticky=tk.W, padx=5, pady=5)

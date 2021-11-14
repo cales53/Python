@@ -28,6 +28,13 @@ def ActualizarCliente():
 
     def nombre_changed(event):
 
+        #clear de db donde nombre es null
+        cursor = conexion.cursor()
+        consulta = "delete from persona WHERE nombre = '';"
+        cursor.execute(consulta)
+        cursor.commit()
+        cursor.close()
+
         cargo_en.delete(0, tk.END)
         phone_en.delete(0, tk.END)
         empresa_cb.delete(0, tk.END)
@@ -89,17 +96,26 @@ def ActualizarCliente():
     cursor.commit()
     cursor.close()
 
+    cursor = conexion.cursor()
+    cursor.execute("SELECT id FROM [dbo].[persona]")
+    tuplei = cursor.fetchall()
+    id = [_[0] for _ in tuplei]
+    cursor.commit()
+    cursor.close()
+
     nombre_cb = ttk.Combobox(nuevocliente, textvariable=selected_nombre)
     nombre_cb['values'] = nombres
     nombre_cb['state'] = 'normal'  # normal
     nombre_cb.grid(row=1, column=2)
     nombre_cb.bind('<<ComboboxSelected>>', nombre_changed)
+    number = nombre_cb.current()
     
     empresa_cb = ttk.Combobox(nuevocliente, textvariable=selected_empresa)
     empresa_cb['values'] = empresas
     empresa_cb['state'] = 'normal'  # normal
     empresa_cb.grid(row=2, column=2)
     empresa_cb.bind('<<ComboboxSelected>>', empresa_changed)
+    number = nombre_cb.current()
 
     tk.Label(nuevocliente, text="Nombre del cliente").grid(row=1, column=1, sticky=tk.W, padx=5, pady=5)
     tk.Label(nuevocliente, text="Nombre de la empresa").grid(row=2, column=1, sticky=tk.W, padx=5, pady=5)
@@ -109,7 +125,7 @@ def ActualizarCliente():
     botonNO = ttk.Button(
     nuevocliente, 
     text="Creación Oferta", 
-    command=lambda:tipoWindow(nombre_cb.get(),empresa_cb.get(),cargo_en.get(),phone_en.get())
+    command=lambda:tipoWindow(id[number],nombre_cb.get(),empresa_cb.get(),cargo_en.get(),phone_en.get())
     )
 
     botonNO.grid(column=1, row=5, sticky=tk.SW ,padx=5, pady=5)
