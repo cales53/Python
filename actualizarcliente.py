@@ -4,7 +4,6 @@ from tkinter.constants import CHAR, NS, NUMERIC
 from typing import Text
 import pyodbc
 from configuracion import server, bd, usuario, contrasena
-from tkinter.messagebox import showinfo
 from tipoofc import tipoWindow
 
 #from tkinter.messagebox import showinfo
@@ -14,8 +13,8 @@ def ActualizarCliente():
     nuevocliente = tk.Tk()
     nuevocliente.title("Actualizar Cliente")
     nuevocliente.resizable(1, 1)
-    nuevocliente.minsize(300,100)
     nuevocliente.columnconfigure(1, weight=3)
+    nuevocliente.minsize(300,100)
 
     selected_nombre = tk.StringVar()
     selected_empresa = tk.StringVar()
@@ -55,6 +54,7 @@ def ActualizarCliente():
 
         cursor.commit()
         cursor.close()
+        numero =nombre_cb.current()
 
     def empresa_changed(event):
         cargo_en.delete(0, tk.END)
@@ -80,6 +80,10 @@ def ActualizarCliente():
         
         cursor.commit()
         cursor.close()
+
+    def imprimir(numero):
+        n = numero
+        
         
     cursor = conexion.cursor()
     cursor.execute("SELECT nombre FROM [dbo].[persona]")
@@ -102,13 +106,13 @@ def ActualizarCliente():
     cursor.commit()
     cursor.close()
 
-    nombre_cb = ttk.Combobox(nuevocliente, textvariable=selected_nombre)
+    nombre_cb = ttk.Combobox(nuevocliente, textvariable=selected_nombre, width="18")
     nombre_cb['values'] = nombres
     nombre_cb['state'] = 'normal'  # normal
     nombre_cb.grid(row=1, column=2)
     nombre_cb.bind('<<ComboboxSelected>>', nombre_changed)
     
-    empresa_cb = ttk.Combobox(nuevocliente, textvariable=selected_empresa)
+    empresa_cb = ttk.Combobox(nuevocliente, textvariable=selected_empresa, width="18")
     empresa_cb['values'] = empresas
     empresa_cb['state'] = 'normal'  # normal
     empresa_cb.grid(row=2, column=2)
@@ -118,7 +122,7 @@ def ActualizarCliente():
     tk.Label(nuevocliente, text="Nombre de la empresa").grid(row=2, column=1, sticky=tk.W, padx=5, pady=5)
     tk.Label(nuevocliente, text="Cargo").grid(row=3, column=1, sticky=tk.W, padx=5, pady=5)
     tk.Label(nuevocliente, text="Celular").grid(row=4, column=1, sticky=tk.W, padx=5, pady=5)
-    #print(nombre_changed(nombre_cb.current()))
+
     botonNO = ttk.Button(
     nuevocliente, 
     text="Creación Oferta", 
