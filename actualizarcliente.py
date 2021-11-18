@@ -54,7 +54,7 @@ def ActualizarCliente():
 
         cursor.commit()
         cursor.close()
-        numero =nombre_cb.current()
+        imprimir(nombre_cb.current())
 
     def empresa_changed(event):
         cargo_en.delete(0, tk.END)
@@ -80,9 +80,10 @@ def ActualizarCliente():
         
         cursor.commit()
         cursor.close()
+        imprimir(empresa_cb.current())
 
     def imprimir(numero):
-        n = numero
+        print(numero)
         
         
     cursor = conexion.cursor()
