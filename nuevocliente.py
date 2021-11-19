@@ -29,7 +29,6 @@ def consulta(cnombre,cempresa,ccargo,cphone):
     id = [_[0] for _ in tuplei]
     cursor.commit()
     cursor.close()
-    print(len(tuplei)-1)
     
     # creacion de una segunda ventana para dar continuacion al ingreso de cantidades
     tipoWindow(id[len(tuplei)-1], cnombre,cempresa,ccargo,cphone)
