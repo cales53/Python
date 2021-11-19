@@ -1,7 +1,5 @@
 import tkinter as tk
-from tkinter import Entry, StringVar, ttk
-from tkinter.constants import CHAR
-from typing import Text
+from tkinter import ttk
 import pyodbc
 from configuracion import server, bd, usuario, contrasena
 from tipoofc import tipoWindow

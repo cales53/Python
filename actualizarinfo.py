@@ -1,6 +1,5 @@
 import tkinter as tk
-from tkinter import Entry, StringVar, ttk
-from tkinter.constants import CHAR, NS, NUMERIC
+from tkinter import ttk
 from actualizarcliente import ActualizarCliente
 from actualizarempresa import ActualizarEmpresa
 
