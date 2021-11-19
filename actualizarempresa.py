@@ -9,18 +9,18 @@ from tipoofc import tipoWindow
 #from tkinter.messagebox import showinfo
 conexion = pyodbc.connect("DRIVER={ODBC Driver 11 for SQL Server}; SERVER="+server+";DATABASE="+bd+";UID="+usuario+";PWD="+contrasena)
     
-def ActualizarCliente():  
-    nuevocliente = tk.Tk()
-    nuevocliente.title("Actualizar Cliente")
-    nuevocliente.resizable(1, 1)
-    nuevocliente.columnconfigure(1, weight=3)
-    nuevocliente.minsize(300,100)
+def ActualizarEmpresa():  
+    empresawin = tk.Tk()
+    empresawin.title("Actualizar Cliente")
+    empresawin.resizable(1, 1)
+    empresawin.columnconfigure(1, weight=3)
+    empresawin.minsize(300,100)
 
     selected_nombre = tk.StringVar()
     selected_empresa = tk.StringVar()
 
-    cargo_en = tk.Entry(nuevocliente)
-    phone_en = tk.Entry(nuevocliente)
+    cargo_en = tk.Entry(empresawin)
+    phone_en = tk.Entry(empresawin)
 
     cargo_en.grid(row=3, column=2, sticky=tk.W, padx=5, pady=5)
     phone_en.grid(row=4, column=2, sticky=tk.W, padx=5, pady=5)
@@ -29,7 +29,7 @@ def ActualizarCliente():
         
         cargo_en.delete(0, tk.END)
         phone_en.delete(0, tk.END)
-        empresa_cb.delete(0, tk.END)
+        #empresa_cb.delete(0, tk.END)
 
         #Clear de db donde nombre es null
         cursor = conexion.cursor()
@@ -57,7 +57,7 @@ def ActualizarCliente():
 
         cargo_en.insert(10, cargos[nombre_cb.current()])
         phone_en.insert(10, phones[nombre_cb.current()])
-        empresa_cb.insert(10, companies[nombre_cb.current()])
+        #empresa_cb.insert(10, companies[nombre_cb.current()])
 
         cursor.close()
 
@@ -65,7 +65,7 @@ def ActualizarCliente():
       
         cargo_en.delete(0, tk.END)
         phone_en.delete(0, tk.END)
-        #nombre_cb.delete(0, tk.END)
+        nombre_cb.delete(0, tk.END)
 
         cursor = conexion.cursor()
 
@@ -92,7 +92,7 @@ def ActualizarCliente():
 
         cargo_en.insert(10, cargos[empresa_cb.current()])
         phone_en.insert(10, phones[empresa_cb.current()])
-        #nombre_cb.insert(10, names[empresa_cb.current()])
+        nombre_cb.insert(10, names[empresa_cb.current()])
 
         cursor.close()
 
@@ -117,27 +117,27 @@ def ActualizarCliente():
     cursor.commit()
     cursor.close()
 
-    nombre_cb = ttk.Combobox(nuevocliente, textvariable=selected_nombre, width="18")
-    nombre_cb['values'] = nombres
-    nombre_cb['state'] = 'readonly'  # normal
-    nombre_cb.grid(row=1, column=2)
-    nombre_cb.bind('<<ComboboxSelected>>', nombre_changed)
-    
-    empresa_cb = ttk.Combobox(nuevocliente, textvariable=selected_empresa, width="18")
+    empresa_cb = ttk.Combobox(empresawin, textvariable=selected_empresa, width="18")
     empresa_cb['values'] = empresas
-    empresa_cb['state'] = 'normal'  # normal
-    empresa_cb.grid(row=2, column=2)
+    empresa_cb['state'] = 'readonly'  # normal
+    empresa_cb.grid(row=1, column=2)
     empresa_cb.bind('<<ComboboxSelected>>', empresa_changed)
+
+    nombre_cb = ttk.Combobox(empresawin, textvariable=selected_nombre, width="18")
+    nombre_cb['values'] = nombres
+    nombre_cb['state'] = 'normal'  # normal
+    nombre_cb.grid(row=2, column=2)
+    nombre_cb.bind('<<ComboboxSelected>>', nombre_changed)
         
-    tk.Label(nuevocliente, text="Nombre del cliente").grid(row=1, column=1, sticky=tk.W, padx=5, pady=5)
-    tk.Label(nuevocliente, text="Nombre de la empresa").grid(row=2, column=1, sticky=tk.W, padx=5, pady=5)
-    tk.Label(nuevocliente, text="Cargo").grid(row=3, column=1, sticky=tk.W, padx=5, pady=5)
-    tk.Label(nuevocliente, text="Celular").grid(row=4, column=1, sticky=tk.W, padx=5, pady=5)
+    tk.Label(empresawin, text="Nombre del cliente").grid(row=2, column=1, sticky=tk.W, padx=5, pady=5)
+    tk.Label(empresawin, text="Nombre de la empresa").grid(row=1, column=1, sticky=tk.W, padx=5, pady=5)
+    tk.Label(empresawin, text="Cargo").grid(row=3, column=1, sticky=tk.W, padx=5, pady=5)
+    tk.Label(empresawin, text="Celular").grid(row=4, column=1, sticky=tk.W, padx=5, pady=5)
         
     botonNO = ttk.Button(
-    nuevocliente, 
+    empresawin, 
     text="Creación Oferta", 
-     command=lambda:tipoWindow(id[nombre_cb.current()], nombre_cb.get(),empresa_cb.get(),cargo_en.get(),phone_en.get())
+     command=lambda:tipoWindow(id[empresa_cb.current()], nombre_cb.get(),empresa_cb.get(),cargo_en.get(),phone_en.get())
 
     )
 
