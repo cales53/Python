@@ -1,23 +1,29 @@
-import time
-import paramiko
-from getpass import getpass
 import pyodbc
+from sshtunnel import SSHTunnelForwarder
 
-server = "192.168.1.89"
 bd = "Clientes"
 usuario = "usuario"
 contrasena = "Manager21"
 
 try:
+    server = ('192.168.1.89')
     conexion = pyodbc.connect("DRIVER={ODBC Driver 11 for SQL Server}; SERVER="+server+";DATABASE="+bd+";UID="+usuario+";PWD="+contrasena)
     print("Conexion exitosa")
 except:
-    print("Conexion fallida a base de datos")
-    try:
-        client = paramiko.SSHClient()
-        client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        client.connect('190.147.177.209', '222', username='cales53@msn.com', password='carlosvega4')
-        stdin,stdout,stderr = client.exec_command('dir')
+    with SSHTunnelForwarder(
+        ('190.147.177.209', 22),
+        ssh_username="admin",
+        ssh_password="%it$2018",
+        local_bind_address=('127.0.0.1', 1433),
+        remote_bind_address=('192.168.1.89', 1433)) as sv:
+        sv.start()
+
+        print("Server Connected")
+        server = ('127.0.0.1')
+        bd = "Clientes"
+        usuario = "usuario"
+        contrasena = "Manager21"
+
         conexion = pyodbc.connect("DRIVER={ODBC Driver 11 for SQL Server}; SERVER="+server+";DATABASE="+bd+";UID="+usuario+";PWD="+contrasena)
-    except paramiko.AuthenticationException as e:
-        print('Autenticacion fallida')
+        print("Conexion exitosa")
+        sv.close()
