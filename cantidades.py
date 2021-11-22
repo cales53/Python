@@ -113,10 +113,24 @@ def openNewWindow():
     mdl100a_cb.grid(row=12, column=2)
     mdl100a_cb.bind('<<ComboboxSelected>>', cantidades_changed)
 
+    def insertar():
+        print('insertar')
+        concentrador_cb.delete(0, tk.END)
+        control_cb.delete(0, tk.END)
+        intercon_cb.delete(0, tk.END)
+        micro_cb.delete(0, tk.END)
+        fuente_cb.delete(0, tk.END)
+        upc_cb.delete(0, tk.END)
+        cell_cb.delete(0, tk.END)
+        mdlrf_cb.delete(0, tk.END)
+        mdl5a_cb.delete(0, tk.END)
+        mdl60a_cb.delete(0, tk.END)
+        mdl100a_cb.delete(0, tk.END)
+
     botone = ttk.Button(
         windowscomprobacion, 
         text="Enviar", 
-        #command=lambda:
+        command=lambda:insertar()
     )
     botone.grid(column=1, row=13, sticky=tk.SW, padx=5, pady=5)
 
