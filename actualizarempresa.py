@@ -19,15 +19,18 @@ def ActualizarEmpresa():
 
     cargo_en = tk.Entry(empresawin)
     phone_en = tk.Entry(empresawin)
+    nombre_en = tk.Entry(empresawin)
 
+    nombre_en.grid(row=2, column=2, sticky=tk.W, padx=5, pady=5)
     cargo_en.grid(row=3, column=2, sticky=tk.W, padx=5, pady=5)
     phone_en.grid(row=4, column=2, sticky=tk.W, padx=5, pady=5)
+    
 
     def nombre_changed(event):
         
         cargo_en.delete(0, tk.END)
         phone_en.delete(0, tk.END)
-        #empresa_cb.delete(0, tk.END)
+        nombre_en.delete(0, tk.END)
 
         #Clear de db donde nombre es null
         cursor = conexion.cursor()
@@ -53,9 +56,8 @@ def ActualizarEmpresa():
         ids = [_[0] for _ in tuplei]
         cursor.commit()
 
-        cargo_en.insert(10, cargos[nombre_cb.current()])
-        phone_en.insert(10, phones[nombre_cb.current()])
-        #empresa_cb.insert(10, companies[nombre_cb.current()])
+        cargo_en.insert(10, cargos[nombre_en.current()])
+        phone_en.insert(10, phones[nombre_en.current()])
 
         cursor.close()
 
@@ -63,7 +65,7 @@ def ActualizarEmpresa():
       
         cargo_en.delete(0, tk.END)
         phone_en.delete(0, tk.END)
-        nombre_cb.delete(0, tk.END)
+        nombre_en.delete(0, tk.END)
 
         cursor = conexion.cursor()
 
@@ -84,20 +86,17 @@ def ActualizarEmpresa():
         phones = [_[0] for _ in tuplet]
         cursor.commit()
         cursor.execute("SELECT id FROM [dbo].[persona]")
-        tuplei = cursor.fetchall()
-        ids = [_[0] for _ in tuplei]
         cursor.commit()
 
         cargo_en.insert(10, cargos[empresa_cb.current()])
         phone_en.insert(10, phones[empresa_cb.current()])
-        nombre_cb.insert(10, names[empresa_cb.current()])
+        nombre_en.insert(10, names[empresa_cb.current()])
 
         cursor.close()
 
     cursor = conexion.cursor()
     cursor.execute("SELECT nombre FROM [dbo].[persona]")
     tuplen = cursor.fetchall()
-    nombres = [_[0] for _ in tuplen]
     cursor.commit()
     cursor.close()
 
@@ -120,12 +119,6 @@ def ActualizarEmpresa():
     empresa_cb['state'] = 'readonly'  # normal
     empresa_cb.grid(row=1, column=2)
     empresa_cb.bind('<<ComboboxSelected>>', empresa_changed)
-
-    nombre_cb = ttk.Combobox(empresawin, textvariable=selected_nombre, width="18")
-    nombre_cb['values'] = nombres
-    nombre_cb['state'] = 'normal'  # normal
-    nombre_cb.grid(row=2, column=2)
-    nombre_cb.bind('<<ComboboxSelected>>', nombre_changed)
         
     tk.Label(empresawin, text="Nombre del cliente").grid(row=2, column=1, sticky=tk.W, padx=5, pady=5)
     tk.Label(empresawin, text="Nombre de la empresa").grid(row=1, column=1, sticky=tk.W, padx=5, pady=5)
@@ -135,7 +128,7 @@ def ActualizarEmpresa():
     botonNO = ttk.Button(
     empresawin, 
     text="Creación Oferta", 
-     command=lambda:tipoWindow(id[empresa_cb.current()], nombre_cb.get(),empresa_cb.get(),cargo_en.get(),phone_en.get())
+     command=lambda:tipoWindow(id[empresa_cb.current()], nombre_en.get(),empresa_cb.get(),cargo_en.get(),phone_en.get())
 
     )
 

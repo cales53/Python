@@ -19,15 +19,17 @@ def ActualizarCliente():
 
     cargo_en = tk.Entry(nuevocliente)
     phone_en = tk.Entry(nuevocliente)
+    empresa_en = tk.Entry(nuevocliente)
 
     cargo_en.grid(row=3, column=2, sticky=tk.W, padx=5, pady=5)
     phone_en.grid(row=4, column=2, sticky=tk.W, padx=5, pady=5)
+    empresa_en.grid(row=2, column=2, sticky=tk.W, padx=5, pady=5)
 
     def nombre_changed(event):
         
         cargo_en.delete(0, tk.END)
         phone_en.delete(0, tk.END)
-        empresa_cb.delete(0, tk.END)
+        empresa_en.delete(0, tk.END)
 
         #Clear de db donde nombre es null
         cursor = conexion.cursor()
@@ -49,48 +51,11 @@ def ActualizarCliente():
         companies = [_[0] for _ in tuplee]
         cursor.commit()
         cursor.execute("SELECT id FROM [dbo].[persona]")
-        tuplei = cursor.fetchall()
-        ids = [_[0] for _ in tuplei]
         cursor.commit()
 
         cargo_en.insert(10, cargos[nombre_cb.current()])
         phone_en.insert(10, phones[nombre_cb.current()])
-        empresa_cb.insert(10, companies[nombre_cb.current()])
-
-        cursor.close()
-
-    def empresa_changed(event):
-      
-        cargo_en.delete(0, tk.END)
-        phone_en.delete(0, tk.END)
-        #nombre_cb.delete(0, tk.END)
-
-        cursor = conexion.cursor()
-
-        consulta = "delete from persona WHERE nombre = '';"
-        cursor.execute(consulta)
-        cursor.commit()
-
-        cursor.execute("SELECT nombre FROM [dbo].[persona]")
-        tuplen = cursor.fetchall()
-        names = [_[0] for _ in tuplen]
-        cursor.commit()
-        cursor.execute("SELECT cargo FROM [dbo].[persona]")
-        tuplec = cursor.fetchall()
-        cargos = [_[0] for _ in tuplec]
-        cursor.commit()
-        cursor.execute("SELECT ntelefono FROM [dbo].[persona]")
-        tuplet = cursor.fetchall()
-        phones = [_[0] for _ in tuplet]
-        cursor.commit()
-        cursor.execute("SELECT id FROM [dbo].[persona]")
-        tuplei = cursor.fetchall()
-        ids = [_[0] for _ in tuplei]
-        cursor.commit()
-
-        cargo_en.insert(10, cargos[empresa_cb.current()])
-        phone_en.insert(10, phones[empresa_cb.current()])
-        #nombre_cb.insert(10, names[empresa_cb.current()])
+        empresa_en.insert(10, companies[nombre_cb.current()])
 
         cursor.close()
 
@@ -121,12 +86,6 @@ def ActualizarCliente():
     nombre_cb.grid(row=1, column=2)
     nombre_cb.bind('<<ComboboxSelected>>', nombre_changed)
     
-    empresa_cb = ttk.Combobox(nuevocliente, textvariable=selected_empresa, width="18")
-    empresa_cb['values'] = empresas
-    empresa_cb['state'] = 'normal'  # normal
-    empresa_cb.grid(row=2, column=2)
-    empresa_cb.bind('<<ComboboxSelected>>', empresa_changed)
-        
     tk.Label(nuevocliente, text="Nombre del cliente").grid(row=1, column=1, sticky=tk.W, padx=5, pady=5)
     tk.Label(nuevocliente, text="Nombre de la empresa").grid(row=2, column=1, sticky=tk.W, padx=5, pady=5)
     tk.Label(nuevocliente, text="Cargo").grid(row=3, column=1, sticky=tk.W, padx=5, pady=5)
@@ -135,7 +94,7 @@ def ActualizarCliente():
     botonNO = ttk.Button(
     nuevocliente, 
     text="Creación Oferta", 
-     command=lambda:tipoWindow(id[nombre_cb.current()], nombre_cb.get(),empresa_cb.get(),cargo_en.get(),phone_en.get())
+     command=lambda:tipoWindow(id[nombre_cb.current()], nombre_cb.get(),empresa_en.get(),cargo_en.get(),phone_en.get())
 
     )
 
