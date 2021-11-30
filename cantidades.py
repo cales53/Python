@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 import pyodbc
 from configuracion import server, bd, usuario, contrasena
+from oferta import nuevodocumento
 
 conexion = pyodbc.connect("DRIVER={ODBC Driver 11 for SQL Server}; SERVER="+server+";DATABASE="+bd+";UID="+usuario+";PWD="+contrasena)
 
@@ -114,7 +115,6 @@ def openNewWindow():
     mdl100a_cb.bind('<<ComboboxSelected>>', cantidades_changed)
 
     def insertar():
-        print('insertar')
         concentrador_cb.delete(0, tk.END)
         control_cb.delete(0, tk.END)
         intercon_cb.delete(0, tk.END)
@@ -126,6 +126,7 @@ def openNewWindow():
         mdl5a_cb.delete(0, tk.END)
         mdl60a_cb.delete(0, tk.END)
         mdl100a_cb.delete(0, tk.END)
+        nuevodocumento()
 
     botone = ttk.Button(
         windowscomprobacion, 

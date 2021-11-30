@@ -175,11 +175,10 @@ def ActualizarPrecios():
     cmdl60a.grid(row=11, column=2, sticky=tk.W, padx=5, pady=5)
     cmdl100a.grid(row=12, column=2, sticky=tk.W, padx=5, pady=5)
 
-
     botonSI = ttk.Button(
     precios, 
     text="Enviar", 
     command=lambda:actualizarv(cconcentrador.get(), ccontrol.get(), cintercon.get(), cmicro.get(), cfuente.get(), cupc.get(), cmdlcel.get(), ccdmlrf.get(), cdis.get(), cmdl5a.get(), cmdl60a.get(), cmdl100a.get())
     )
 
-    botonSI.grid(column=1, row=13, sticky=tk.SW ,padx=5, pady=5)
+    botonSI.grid(column=1, row=15, sticky=tk.SW ,padx=5, pady=5)
