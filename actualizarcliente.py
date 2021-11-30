@@ -15,7 +15,6 @@ def ActualizarCliente():
     nuevocliente.minsize(300,100)
 
     selected_nombre = tk.StringVar()
-    selected_empresa = tk.StringVar()
 
     cargo_en = tk.Entry(nuevocliente)
     phone_en = tk.Entry(nuevocliente)

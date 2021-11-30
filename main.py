@@ -41,11 +41,7 @@ botonc = ttk.Button(
 botonc.grid(column=2, row=4, sticky=tk.SE, padx=5, pady=5)
 
 
-#root.geometry("275x57")
 imagen=PhotoImage(file=r"Imagenes\logo.png")
-#imagen
-#imagen.resizable(180,37.31)
-#imagen=PhotoImage(file=open("D:\User\Documentos\Python\Imagenes"))
 fondo =Label(root,image=imagen).place(x=140,y=30)
 
 root.mainloop()

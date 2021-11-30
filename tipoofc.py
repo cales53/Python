@@ -30,7 +30,6 @@ def tipoWindow(id, nombre, empresa, cargo, phone):
         tipo, 
         text="Enviar", 
         command=lambda:openNewWindow()
-        #command=lambda:
     )
     botone.grid(column=1, row=2, sticky=tk.SW, padx=5, pady=5)
 
