@@ -5,14 +5,14 @@ from configuracion import server, bd, usuario, contrasena
 from cantidades import openNewWindow
 conexion = pyodbc.connect("DRIVER={ODBC Driver 11 for SQL Server}; SERVER="+server+";DATABASE="+bd+";UID="+usuario+";PWD="+contrasena)
 
-
-def tipo_changed(event):
-    cursor = conexion.cursor()
-    consulta="insert into oferta(tipo) values (?);"
-    cursor.execute(consulta,'REPUESTOS')
-    cursor.close()
-
 def tipoWindow(id, nombre, empresa, cargo, phone):
+
+    def tipo_changed(event):
+        cursor = conexion.cursor()
+        consulta="insert into oferta(tipo) values (?);"
+        cursor.execute(consulta, tipo_cb.get())
+        cursor.commit()
+        cursor.close()
     tipo= tk.Tk()
     tipo.title("Cantidades")
     tipo.resizable(1, 1)
