@@ -9,6 +9,7 @@ def ActualizarInfo():
     actualizarWin.resizable(1, 1)
     actualizarWin.columnconfigure(1, weight=3)
     actualizarWin.minsize(300,80)
+    actualizarWin.maxsize(300,80)
 
     
     botonNC = ttk.Button(

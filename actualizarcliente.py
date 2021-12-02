@@ -13,6 +13,7 @@ def ActualizarCliente():
     nuevocliente.resizable(1, 1)
     nuevocliente.columnconfigure(1, weight=3)
     nuevocliente.minsize(300,100)
+    nuevocliente.maxsize(300,160)
 
     selected_nombre = tk.StringVar()
 

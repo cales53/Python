@@ -13,6 +13,7 @@ def ActualizarEmpresa():
     empresawin.resizable(1, 1)
     empresawin.columnconfigure(1, weight=3)
     empresawin.minsize(300,100)
+    empresawin.maxsize(300,155)
 
     selected_nombre = tk.StringVar()
     selected_empresa = tk.StringVar()

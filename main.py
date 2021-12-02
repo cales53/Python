@@ -9,6 +9,7 @@ root.title("Nueva Oferta Economica")
 root.columnconfigure(1, weight=3)
 
 root.minsize(430, 100)
+root.maxsize(430, 150)
 
 botonNC = ttk.Button(
     root, 
