@@ -8,7 +8,7 @@ def ActualizarInfo():
     actualizarWin.title("Actualizar Informacion")
     actualizarWin.resizable(1, 1)
     actualizarWin.columnconfigure(1, weight=3)
-    actualizarWin.minsize(300,100)
+    actualizarWin.minsize(300,80)
 
     
     botonNC = ttk.Button(
