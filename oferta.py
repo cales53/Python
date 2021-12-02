@@ -11,7 +11,8 @@ from reportlab.lib.styles import getSampleStyleSheet
 
 pdfmetrics.registerFont(ttfonts.TTFont("Arial", "Fuentes/arial.ttf"))
 
-def nuevodocumento():
+def nuevodocumento(windowscomprobacion):
+    #windowscomprobacion.destroy()
     print('nuevo documento')
     my_text = "<font fontName=Arial size=12> De conformidad con su solicitud y atendiendo a la información y necesidades topológicas específicas suministradas por ustedes, nos permitimos presentar la siguiente:</font>"
 

@@ -50,7 +50,8 @@ def actualizarv(concentrador, control, intercon, micro, fuente, upc, cel, rf, di
     messagebox.showwarning("Novedad", "Información Actualizada")
     
 
-def ActualizarPrecios():
+def ActualizarPrecios(validacion):
+    validacion.destroy()
     precios = tk.Tk()
     precios.title("Actualizar Precios")
     precios.resizable(1, 1)
@@ -102,62 +103,74 @@ def ActualizarPrecios():
     cursor.execute("SELECT [valor unitario] FROM [dbo].[precios] WHERE producto = 'concentrador';")
     tupleve = cursor.fetchall()
     vconcentrador = [_[0] for _ in tupleve]
-    cconcentrador.insert(10, int(vconcentrador[0]))
+    sep_vconcentrador = (f"{vconcentrador[0]:,}")
+    cconcentrador.insert(10, sep_vconcentrador)
     
     cursor.execute("SELECT [valor unitario] FROM [dbo].[precios] WHERE producto = 'control';")
     tuplevcon = cursor.fetchall()
     vcontrol = [_[0] for _ in tuplevcon]
-    ccontrol.insert(10, int(vcontrol[0]))
+    sep_vcontrol = (f"{vcontrol[0]:,}")
+    ccontrol.insert(10, sep_vcontrol)
 
     cursor.execute("SELECT [valor unitario] FROM [dbo].[precios] WHERE producto = 'intercon';")
     tuplevintercon = cursor.fetchall()
     vintercon = [_[0] for _ in tuplevintercon]
-    cintercon.insert(10, int(vintercon[0]))
+    sep_vintercon = (f"{vintercon[0]:,}")
+    cintercon.insert(10, sep_vintercon)
 
     cursor.execute("SELECT [valor unitario] FROM [dbo].[precios] WHERE producto = 'micro';")
     tuplevmicro = cursor.fetchall()
     vmicro = [_[0] for _ in tuplevmicro]
-    cmicro.insert(10, int(vmicro[0]))
+    sep_vmicro = (f"{vmicro[0]:,}")
+    cmicro.insert(10, sep_vmicro)
 
     cursor.execute("SELECT [valor unitario] FROM [dbo].[precios] WHERE producto = 'fuente';")
     tuplevfuente = cursor.fetchall()
     vfuente = [_[0] for _ in tuplevfuente]
-    cfuente.insert(10, int(vfuente[0]))
+    sep_vfuente = (f"{vfuente[0]:,}")
+    cfuente.insert(10, sep_vfuente)
 
     cursor.execute("SELECT [valor unitario] FROM [dbo].[precios] WHERE producto = 'upc';")
     tuplevupc = cursor.fetchall()
     vupc = [_[0] for _ in tuplevupc]
-    cupc.insert(10, int(vupc[0]))
+    sep_vupc = (f"{vupc[0]:,}")
+    cupc.insert(10, sep_vupc)
 
     cursor.execute("SELECT [valor unitario] FROM [dbo].[precios] WHERE producto = 'cel';")
     tuplevcel = cursor.fetchall()
     vcel = [_[0] for _ in tuplevcel]
-    cmdlcel.insert(10, int(vcel[0]))
+    sep_vcel = (f"{vcel[0]:,}")
+    cmdlcel.insert(10, sep_vcel)
 
     cursor.execute("SELECT [valor unitario] FROM [dbo].[precios] WHERE producto = 'rf';")
     tuplevrf = cursor.fetchall()
     vrf = [_[0] for _ in tuplevrf]
-    ccdmlrf.insert(10, int(vrf[0]))
+    sep_vrf = (f"{vrf[0]:,}")
+    ccdmlrf.insert(10, sep_vrf)
 
     cursor.execute("SELECT [valor unitario] FROM [dbo].[precios] WHERE producto = 'display';")
     tuplevdis = cursor.fetchall()
     vdis = [_[0] for _ in tuplevdis]
-    cdis.insert(10, int(vdis[0]))
+    sep_vdis = (f"{vdis[0]:,}")
+    cdis.insert(10, sep_vdis)
 
     cursor.execute("SELECT [valor unitario] FROM [dbo].[precios] WHERE producto = 'mdl5a';")
     tuplev5a = cursor.fetchall()
     vmdl5a = [_[0] for _ in tuplev5a]
-    cmdl5a.insert(10, int(vmdl5a[0]))
+    sep_vmdl5a = (f"{vmdl5a[0]:,}")
+    cmdl5a.insert(10, sep_vmdl5a)
 
     cursor.execute("SELECT [valor unitario] FROM [dbo].[precios] WHERE producto = 'mdl60a';")
     tuplevmdl60a = cursor.fetchall()
     vmdl60a = [_[0] for _ in tuplevmdl60a]
-    cmdl60a.insert(10, int(vmdl60a[0]))
+    sep_vmdl60a = (f"{vmdl60a[0]:,}")
+    cmdl60a.insert(10, sep_vmdl60a)
 
     cursor.execute("SELECT [valor unitario] FROM [dbo].[precios] WHERE producto = 'mdl100a';")
     tuplevmdl100a = cursor.fetchall()
     vmdl100a = [_[0] for _ in tuplevmdl100a]
-    cmdl100a.insert(10, int(vmdl100a[0]))
+    sep_vmdl100a = (f"{vmdl100a[0]:,}")
+    cmdl100a.insert(10, sep_vmdl100a)
 
     cursor.close()
 

@@ -16,7 +16,7 @@ def tipoWindow(id, nombre, empresa, cargo, phone):
         cursor.commit()
         cursor.close()
     tipo= tk.Tk()
-    tipo.title("Cantidades")
+    tipo.title("Tipo de Oferta")
     tipo.resizable(1, 1)
     tipo.minsize(230,80)
     selected_tipo = tk.StringVar()
@@ -37,6 +37,6 @@ def tipoWindow(id, nombre, empresa, cargo, phone):
     botone = ttk.Button(
         tipo, 
         text="Enviar", 
-        command=lambda:versionWindow()
+        command=lambda:versionWindow(tipo)
     )
     botone.grid(column=1, row=2, sticky=tk.SW, padx=5, pady=5)

@@ -6,7 +6,8 @@ from oferta import nuevodocumento
 
 conexion = pyodbc.connect("DRIVER={ODBC Driver 11 for SQL Server}; SERVER="+server+";DATABASE="+bd+";UID="+usuario+";PWD="+contrasena)
 
-def openNewWindow():
+def openNewWindow(actualizarWin):
+    actualizarWin.destroy()
     windowscomprobacion= tk.Tk()
     windowscomprobacion.title("Cantidades")
     windowscomprobacion.resizable(1, 1)
@@ -126,7 +127,7 @@ def openNewWindow():
         mdl5a_cb.delete(0, tk.END)
         mdl60a_cb.delete(0, tk.END)
         mdl100a_cb.delete(0, tk.END)
-        nuevodocumento()
+        nuevodocumento(windowscomprobacion)
 
     botone = ttk.Button(
         windowscomprobacion, 

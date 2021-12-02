@@ -5,7 +5,8 @@ from configuracion import server, bd, usuario, contrasena
 from cantidades import openNewWindow
 conexion = pyodbc.connect("DRIVER={ODBC Driver 11 for SQL Server}; SERVER="+server+";DATABASE="+bd+";UID="+usuario+";PWD="+contrasena)
 
-def versionWindow():
+def versionWindow(tipo):
+    tipo.destroy()
     cursor = conexion.cursor()
     consulta1="select MAX(id) from oferta;"
     cursor.execute(consulta1)
@@ -35,6 +36,6 @@ def versionWindow():
     botone = ttk.Button(
         versionwin, 
         text="Enviar", 
-        command=lambda:openNewWindow()
+        command=lambda:openNewWindow(versionwin)
     )
     botone.grid(column=1, row=2, sticky=tk.SW, padx=5, pady=5)

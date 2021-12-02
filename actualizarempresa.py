@@ -14,8 +14,6 @@ def ActualizarEmpresa():
     empresawin.columnconfigure(1, weight=3)
     empresawin.minsize(300,100)
     empresawin.maxsize(300,155)
-
-    selected_nombre = tk.StringVar()
     selected_empresa = tk.StringVar()
 
     cargo_en = tk.Entry(empresawin)
@@ -25,42 +23,6 @@ def ActualizarEmpresa():
     nombre_en.grid(row=2, column=2, sticky=tk.W, padx=5, pady=5)
     cargo_en.grid(row=3, column=2, sticky=tk.W, padx=5, pady=5)
     phone_en.grid(row=4, column=2, sticky=tk.W, padx=5, pady=5)
-    
-
-    def nombre_changed(event):
-        
-        cargo_en.delete(0, tk.END)
-        phone_en.delete(0, tk.END)
-        nombre_en.delete(0, tk.END)
-
-        #Clear de db donde nombre es null
-        cursor = conexion.cursor()
-        
-        consulta = "delete from persona WHERE nombre = '';"
-        cursor.execute(consulta)
-        cursor.commit()
-
-        cursor.execute("SELECT cargo FROM [dbo].[persona]")
-        tuplec = cursor.fetchall()
-        cargos = [_[0] for _ in tuplec]
-        cursor.commit()
-        cursor.execute("SELECT ntelefono FROM [dbo].[persona]")
-        tuplet = cursor.fetchall()
-        phones = [_[0] for _ in tuplet]
-        cursor.commit()
-        cursor.execute("SELECT empresa FROM [dbo].[persona]")
-        tuplee = cursor.fetchall()
-        companies = [_[0] for _ in tuplee]
-        cursor.commit()
-        cursor.execute("SELECT id FROM [dbo].[persona]")
-        tuplei = cursor.fetchall()
-        ids = [_[0] for _ in tuplei]
-        cursor.commit()
-
-        cargo_en.insert(10, cargos[nombre_en.current()])
-        phone_en.insert(10, phones[nombre_en.current()])
-
-        cursor.close()
 
     def empresa_changed(event):
       
